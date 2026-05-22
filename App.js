@@ -10,6 +10,7 @@ import {
   Dimensions,
   Modal,
   Linking,
+  Platform,
 } from "react-native";
 
 import { Video } from "expo-av";
@@ -44,7 +45,7 @@ export default function App() {
 
   const galleryImages = [
     require("./assets/foto5.jpg"),
-    // require("./assets/foto11.jpg"),
+    require("./assets/foto11.heif"),
     require("./assets/foto7.jpg"),
     require("./assets/foto8.jpg"),
     require("./assets/foto9.jpg"),
@@ -95,7 +96,7 @@ export default function App() {
         />
       </TouchableOpacity>
 
-      {/* MENU MODAL */}
+      {/* MENU */}
 
       <Modal
         visible={menuVisible}
@@ -114,111 +115,63 @@ export default function App() {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => {
-              setMenuVisible(false);
+          {[
+            ["documentário", documentaryRef],
+            ["entrevistas", interviewsRef],
+            ["transcrições", transcriptionRef],
+            ["fotografias", galleryRef],
+            ["trabalho escrito", workRef],
+          ].map(([title, ref], index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.menuItem}
+              onPress={() => {
+                setMenuVisible(false);
 
-              setTimeout(() => {
-                scrollToSection(documentaryRef);
-              }, 200);
-            }}
-          >
-            <Text style={styles.menuText}>
-              documentário
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => {
-              setMenuVisible(false);
-
-              setTimeout(() => {
-                scrollToSection(interviewsRef);
-              }, 200);
-            }}
-          >
-            <Text style={styles.menuText}>
-              entrevistas
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => {
-              setMenuVisible(false);
-
-              setTimeout(() => {
-                scrollToSection(transcriptionRef);
-              }, 200);
-            }}
-          >
-            <Text style={styles.menuText}>
-              transcrições
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => {
-              setMenuVisible(false);
-
-              setTimeout(() => {
-                scrollToSection(galleryRef);
-              }, 200);
-            }}
-          >
-            <Text style={styles.menuText}>
-              fotografias
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => {
-              setMenuVisible(false);
-
-              setTimeout(() => {
-                scrollToSection(workRef);
-              }, 200);
-            }}
-          >
-            <Text style={styles.menuText}>
-              trabalho escrito
-            </Text>
-          </TouchableOpacity>
+                setTimeout(() => {
+                  scrollToSection(ref);
+                }, 200);
+              }}
+            >
+              <Text style={styles.menuText}>
+                {title}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </View>
       </Modal>
 
-      <Modal
-  visible={selectedImage !== null}
-  transparent={true}
-  animationType="fade"
->
-  <View style={styles.imageModal}>
-    <TouchableOpacity
-      style={styles.closeImageButton}
-      onPress={() => setSelectedImage(null)}
-    >
-      <Ionicons
-        name="close"
-        size={40}
-        color="#fff"
-      />
-    </TouchableOpacity>
+      {/* MODAL IMAGEM */}
 
-    <Image
-      source={selectedImage}
-      style={styles.fullscreenImage}
-      resizeMode="contain"
-    />
-  </View>
-</Modal>
+      <Modal
+        visible={selectedImage !== null}
+        transparent={true}
+        animationType="fade"
+      >
+        <View style={styles.imageModal}>
+          <TouchableOpacity
+            style={styles.closeImageButton}
+            onPress={() => setSelectedImage(null)}
+          >
+            <Ionicons
+              name="close"
+              size={40}
+              color="#fff"
+            />
+          </TouchableOpacity>
+
+          <Image
+            source={selectedImage}
+            style={styles.fullscreenImage}
+            resizeMode="contain"
+          />
+        </View>
+      </Modal>
 
       <ScrollView
         ref={scrollRef}
         style={styles.container}
+        contentContainerStyle={styles.safePadding}
         showsVerticalScrollIndicator={false}
       >
         {/* HERO */}
@@ -279,7 +232,7 @@ export default function App() {
             ref={video}
             style={styles.video}
             source={{
-              // uri: "https://cdn.coverr.co/videos/coverr-aerial-view-of-city-1560084122262?download=1080p",
+              uri: "https://cdn.coverr.co/videos/coverr-aerial-view-of-city-1560084122262?download=1080p",
             }}
             useNativeControls={false}
             resizeMode="cover"
@@ -415,15 +368,15 @@ export default function App() {
           </Text>
 
           <TouchableOpacity
-  onPress={() =>
-    setSelectedImage(require("./assets/foto1.jpeg"))
-  }
->
-  <Image
-    source={require("./assets/foto1.jpeg")}
-    style={styles.heroGalleryImage}
-  />
-</TouchableOpacity>
+            onPress={() =>
+              setSelectedImage(require("./assets/foto1.jpeg"))
+            }
+          >
+            <Image
+              source={require("./assets/foto1.jpeg")}
+              style={styles.heroGalleryImage}
+            />
+          </TouchableOpacity>
 
           <Text style={styles.galleryText}>
             Entre vielas, concreto, arte e resistência,
@@ -431,107 +384,108 @@ export default function App() {
           </Text>
 
           <View style={styles.masonryRow}>
-  <TouchableOpacity
-    style={styles.tallImage}
-    onPress={() =>
-      setSelectedImage(require("./assets/foto2.jpeg"))
-    }
-  >
-    <Image
-      source={require("./assets/foto2.jpeg")}
-      style={styles.fullSize}
-    />
-  </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.tallImage}
+              onPress={() =>
+                setSelectedImage(require("./assets/foto2.jpeg"))
+              }
+            >
+              <Image
+                source={require("./assets/foto2.jpeg")}
+                style={styles.fullSize}
+              />
+            </TouchableOpacity>
 
-  <View style={styles.smallColumn}>
-    <TouchableOpacity
-      style={styles.smallImage}
-      onPress={() =>
-        setSelectedImage(require("./assets/foto3.jpeg"))
-      }
-    >
-      <Image
-        source={require("./assets/foto3.jpeg")}
-        style={styles.fullSize}
-      />
-    </TouchableOpacity>
+            <View style={styles.smallColumn}>
+              <TouchableOpacity
+                style={styles.smallImage}
+                onPress={() =>
+                  setSelectedImage(require("./assets/foto3.jpeg"))
+                }
+              >
+                <Image
+                  source={require("./assets/foto3.jpeg")}
+                  style={styles.fullSize}
+                />
+              </TouchableOpacity>
 
-    <TouchableOpacity
-      style={styles.smallImage}
-      onPress={() =>
-        setSelectedImage(require("./assets/foto4.jpeg"))
-      }
-    >
-      <Image
-        source={require("./assets/foto4.jpeg")}
-        style={styles.fullSize}
-      />
-    </TouchableOpacity>
-  </View>
-</View>
+              <TouchableOpacity
+                style={styles.smallImage}
+                onPress={() =>
+                  setSelectedImage(require("./assets/foto4.jpeg"))
+                }
+              >
+                <Image
+                  source={require("./assets/foto4.jpeg")}
+                  style={styles.fullSize}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          {/* CARROSSEL */}
 
           <ScrollView
-  horizontal={true}
-  pagingEnabled
-  decelerationRate="fast"
-  snapToAlignment="center"
-  snapToInterval={width * 0.72 + 16}
-  disableIntervalMomentum={true}
-  showsHorizontalScrollIndicator={false}
-  contentContainerStyle={styles.carousel}
->
-  {galleryImages.map((img, index) => (
-    <View
-      key={index}
-      style={styles.carouselCard}
-    >
-      <TouchableOpacity
-  onPress={() => setSelectedImage(img)}
->
-  <Image
-    source={img}
-    style={styles.carouselImage}
-  />
-</TouchableOpacity>
-    </View>
-  ))}
-</ScrollView>
-
+            horizontal
+            pagingEnabled
+            decelerationRate="fast"
+            snapToAlignment="center"
+            snapToInterval={width * 0.72 + 16}
+            disableIntervalMomentum={true}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.carousel}
+          >
+            {galleryImages.map((img, index) => (
+              <View
+                key={index}
+                style={styles.carouselCard}
+              >
+                <TouchableOpacity
+                  onPress={() => setSelectedImage(img)}
+                >
+                  <Image
+                    source={img}
+                    style={styles.carouselImage}
+                  />
+                </TouchableOpacity>
+              </View>
+            ))}
+          </ScrollView>
 
           <View style={styles.bottomGrid}>
             <TouchableOpacity
-  onPress={() =>
-    setSelectedImage(require("./assets/foto6.jpg"))
-  }
->
-  <Image
-    source={require("./assets/foto6.jpg")}
-    style={styles.bottomImage}
-  />
-</TouchableOpacity>
+              onPress={() =>
+                setSelectedImage(require("./assets/foto6.jpg"))
+              }
+            >
+              <Image
+                source={require("./assets/foto6.jpg")}
+                style={styles.bottomImage}
+              />
+            </TouchableOpacity>
 
             <TouchableOpacity
-  onPress={() =>
-    setSelectedImage(require("./assets/foto13.jpeg"))
-  }
->
-  <Image
-    source={require("./assets/foto13.jpeg")}
-    style={styles.bottomImage}
-  />
-</TouchableOpacity>
+              onPress={() =>
+                setSelectedImage(require("./assets/foto13.jpeg"))
+              }
+            >
+              <Image
+                source={require("./assets/foto13.jpeg")}
+                style={styles.bottomImage}
+              />
+            </TouchableOpacity>
           </View>
 
           <TouchableOpacity
-  onPress={() =>
-    setSelectedImage(require("./assets/foto10.jpg"))
-  }
->
-  <Image
-    source={require("./assets/foto10.jpg")}
-    style={styles.finalImage}
-  />
-</TouchableOpacity>
+            onPress={() =>
+              setSelectedImage(require("./assets/foto10.jpg"))
+            }
+          >
+            <Image
+              source={require("./assets/foto10.jpg")}
+              style={styles.finalImage}
+            />
+          </TouchableOpacity>
         </View>
 
         {/* TRABALHO */}
@@ -551,14 +505,14 @@ export default function App() {
 
           <TouchableOpacity
             style={styles.downloadButton}
-              onPress={() =>
+            onPress={() =>
               Linking.openURL(
-              "https://drive.google.com/file/d/1jr4OaTJmuMbuLqD8Tsy8vN3EBM8Ei-Lj/view?usp=sharing"
-    )
-  }
->
+                "https://drive.google.com/file/d/1jr4OaTJmuMbuLqD8Tsy8vN3EBM8Ei-Lj/view?usp=sharing"
+              )
+            }
+          >
             <Text style={styles.downloadButtonText}>
-               acessar pesquisa
+              acessar pesquisa
             </Text>
           </TouchableOpacity>
         </View>
@@ -583,14 +537,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
   },
 
+  safePadding: {
+    paddingBottom: Platform.OS === "ios" ? 40 : 20,
+  },
+
   fixedMenuButton: {
     position: "absolute",
-    top: 60,
-    right: 24,
+    top: height * 0.06,
+    right: width * 0.05,
     zIndex: 999,
     backgroundColor: "#fff",
-    width: 58,
-    height: 58,
+    width: width * 0.14,
+    height: width * 0.14,
     borderRadius: 999,
     justifyContent: "center",
     alignItems: "center",
@@ -615,16 +573,16 @@ const styles = StyleSheet.create({
 
   menuText: {
     color: "#fff",
-    fontSize: 40,
+    fontSize: width * 0.08,
     fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   hero: {
     width: "100%",
-    height: height * 1.0,
+    height: height,
     justifyContent: "space-between",
-    paddingTop: 30,
-    paddingBottom: 40,
+    paddingTop: height * 0.04,
+    paddingBottom: height * 0.05,
     alignItems: "center",
     backgroundColor: "#fff",
   },
@@ -639,8 +597,8 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    width: width * 1.1,
-    height: 180,
+    width: width * 0.95,
+    height: height * 0.22,
     zIndex: 2,
   },
 
@@ -652,7 +610,6 @@ const styles = StyleSheet.create({
     padding: 24,
     paddingTop: 60,
     paddingBottom: 80,
-    position: "relative",
     minHeight: height * 0.9,
     justifyContent: "space-between",
   },
@@ -663,39 +620,27 @@ const styles = StyleSheet.create({
 
   title: {
     color: "#fff",
-    fontSize: 44,
+    fontSize: width * 0.11,
     fontFamily: "KonkhmerSleokchher_400Regular",
-    marginBottom: 5,
-    zIndex: 2,
   },
-
-  fullSize: {
-  width: "100%",
-  height: "100%",
-  borderRadius: 12,
-},
 
   paragraph: {
     color: "#fff",
-    fontSize: 20,
-    lineHeight: 30,
-    width: "90%",
-    zIndex: 2,
+    fontSize: width * 0.05,
+    lineHeight: width * 0.075,
+    width: "92%",
   },
 
   sideText: {
     color: "#fff",
-    fontSize: 28,
+    fontSize: width * 0.07,
     fontFamily: "KonkhmerSleokchher_400Regular",
-    width: "95%",
-    marginTop: 20,
-    lineHeight: 38,
-    zIndex: 2,
+    lineHeight: width * 0.095,
   },
 
   videoContainer: {
     width: "100%",
-    height: 600,
+    height: height * 0.75,
     position: "relative",
   },
 
@@ -713,8 +658,8 @@ const styles = StyleSheet.create({
 
   videoText: {
     color: "#fff",
-    fontSize: 34,
-    lineHeight: 42,
+    fontSize: width * 0.08,
+    lineHeight: width * 0.1,
     fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
@@ -746,15 +691,15 @@ const styles = StyleSheet.create({
 
   sectionTitle: {
     color: "#fff",
-    fontSize: 36,
+    fontSize: width * 0.09,
     marginBottom: 20,
     fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   sectionDescription: {
     color: "#ddd",
-    fontSize: 18,
-    lineHeight: 28,
+    fontSize: width * 0.045,
+    lineHeight: width * 0.07,
     marginBottom: 40,
   },
 
@@ -766,8 +711,8 @@ const styles = StyleSheet.create({
 
   fakeCardTitle: {
     color: "#fff",
-    fontSize: 26,
-    lineHeight: 36,
+    fontSize: width * 0.065,
+    lineHeight: width * 0.09,
     fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
@@ -791,8 +736,8 @@ const styles = StyleSheet.create({
 
   quote: {
     color: "#fff",
-    fontSize: 30,
-    lineHeight: 42,
+    fontSize: width * 0.075,
+    lineHeight: width * 0.11,
     fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
@@ -802,42 +747,37 @@ const styles = StyleSheet.create({
     paddingVertical: 40,
   },
 
-  card: {
-    backgroundColor: "#000",
-  },
-
   cardImage: {
     width: "100%",
-    height: 220,
+    height: height * 0.32,
   },
 
   cardText: {
     color: "#fff",
-    fontSize: 25,
+    fontSize: width * 0.065,
     fontFamily: "KonkhmerSleokchher_400Regular",
-    padding: 5,
-    lineHeight: 38,
+    lineHeight: width * 0.09,
     marginTop: 30,
   },
 
   imageModal: {
-  flex: 1,
-  backgroundColor: "rgba(0,0,0,0.95)",
-  justifyContent: "center",
-  alignItems: "center",
-},
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.95)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
-fullscreenImage: {
-  width: "100%",
-  height: "80%",
-},
+  fullscreenImage: {
+    width: "100%",
+    height: "80%",
+  },
 
-closeImageButton: {
-  position: "absolute",
-  top: 60,
-  right: 24,
-  zIndex: 999,
-},
+  closeImageButton: {
+    position: "absolute",
+    top: 60,
+    right: 24,
+    zIndex: 999,
+  },
 
   gallerySection: {
     backgroundColor: "#000",
@@ -848,30 +788,30 @@ closeImageButton: {
 
   heroGalleryImage: {
     width: "100%",
-    height: 500,
+    height: height * 0.55,
     borderRadius: 12,
     marginTop: 20,
   },
 
   galleryText: {
     color: "#fff",
-    fontSize: 22,
-    lineHeight: 34,
+    fontSize: width * 0.055,
+    lineHeight: width * 0.085,
     marginTop: 30,
     marginBottom: 40,
-    width: "92%",
   },
 
   masonryRow: {
     flexDirection: "row",
-    gap: 10,
+    gap: width * 0.025,
     marginBottom: 50,
   },
 
   tallImage: {
     width: "58%",
-    height: 420,
+    height: height * 0.42,
     borderRadius: 12,
+    overflow: "hidden",
   },
 
   smallColumn: {
@@ -881,48 +821,46 @@ closeImageButton: {
 
   smallImage: {
     width: "100%",
-    height: 205,
+    height: height * 0.2,
     borderRadius: 12,
+    overflow: "hidden",
+  },
+
+  fullSize: {
+    width: "100%",
+    height: "100%",
   },
 
   carousel: {
-    gap: 14,
     paddingRight: 24,
     marginBottom: 50,
   },
 
+  carouselCard: {
+    marginRight: 16,
+  },
+
   carouselImage: {
-  width: width * 0.72,
-  height: 420,
-  borderRadius: 18,
-},
-
-carouselCard: {
-  marginRight: 16,
-},
-
-  fullImage: {
-    width: "100%",
-    height: 600,
-    borderRadius: 12,
-    marginBottom: 50,
+    width: width * 0.72,
+    height: height * 0.5,
+    borderRadius: 18,
   },
 
   bottomGrid: {
     flexDirection: "row",
-    gap: 10,
+    justifyContent: "space-between",
     marginBottom: 10,
   },
 
   bottomImage: {
-    width: width / 2 - 29,
-    height: 240,
+    width: width * 0.42,
+    height: height * 0.22,
     borderRadius: 12,
   },
 
   finalImage: {
     width: "100%",
-    height: 320,
+    height: height * 0.38,
     borderRadius: 12,
     marginTop: 10,
   },
@@ -944,7 +882,7 @@ carouselCard: {
 
   downloadButtonText: {
     color: "#fff",
-    fontSize: 20,
+    fontSize: width * 0.055,
     fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
@@ -957,8 +895,8 @@ carouselCard: {
   footerText: {
     color: "#fff",
     textAlign: "center",
-    fontSize: 24,
-    lineHeight: 36,
+    fontSize: width * 0.06,
+    lineHeight: width * 0.09,
     fontFamily: "KonkhmerSleokchher_400Regular",
   },
 });
