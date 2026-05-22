@@ -317,17 +317,16 @@ const scrollToSection = (position) => {
   <View style={styles.youtubeContainer}>
     {Platform.OS === "web" ? (
       <iframe
-        width="100%"
-        height="100%"
-        src="https://www.youtube.com/embed/nHUxM6p0WCE"
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        style={{
-          border: "none",
-        }}
-      />
+      src="https://www.youtube.com/embed/nHUxM6p0WCE?rel=0&modestbranding=1"
+      title="YouTube video player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      style={{
+       width: "100%",
+       height: "100%",
+       border: "none",
+  }}
+/>
     ) : (
       <WebView
         source={{
@@ -969,10 +968,12 @@ youtubeSection: {
 
 youtubeContainer: {
   width: "100%",
-  height: 220,
+  aspectRatio: 16 / 9,
   borderRadius: 20,
   overflow: "hidden",
   marginTop: 20,
+  borderWidth: 1,
+  borderColor: "#333",
 },
 
 });
