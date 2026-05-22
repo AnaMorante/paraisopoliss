@@ -709,7 +709,7 @@ const styles = StyleSheet.create({
 
   videoOverlay: {
     position: "absolute",
-    bottom: 60,
+    bottom: 20,
     left: 24,
     width: "80%",
   },
