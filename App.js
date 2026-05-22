@@ -56,16 +56,13 @@ export default function App() {
   }
 
   const scrollToSection = (ref) => {
-    ref.current?.measureLayout(
-      scrollRef.current,
-      (x, y) => {
-        scrollRef.current.scrollTo({
-          y,
-          animated: true,
-        });
-      }
-    );
-  };
+  ref.current?.measure((fx, fy, width, height, px, py) => {
+    scrollRef.current?.scrollTo({
+      y: py - 40,
+      animated: true,
+    });
+  });
+};
 
   const toggleVideo = async () => {
     if (!video.current) return;
