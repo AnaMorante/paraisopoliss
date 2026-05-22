@@ -45,7 +45,7 @@ export default function App() {
 
   const galleryImages = [
     require("./assets/foto5.jpg"),
-    require("./assets/foto11.heif"),
+    require("./assets/foto11.jpg"),
     require("./assets/foto7.jpg"),
     require("./assets/foto8.jpg"),
     require("./assets/foto9.jpg"),
