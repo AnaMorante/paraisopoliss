@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   Dimensions,
   Modal,
-  Linking,
   Platform,
 } from "react-native";
 
@@ -286,29 +285,6 @@ export default function App() {
             </Text>
           </View>
 
-          {/* VIDEO YOUTUBE */}
-
-<View style={styles.youtubeSection}>
-  <Text style={styles.sectionTitle}>
-    documentário completo
-  </Text>
-
-  <Text style={styles.sectionDescription}>
-    Assista ao registro audiovisual realizado
-    durante a pesquisa em Paraisópolis.
-  </Text>
-
-  <View style={styles.youtubeContainer}>
-    <WebView
-      source={{
-        uri: "https://www.youtube.com/embed/=nHUxM6p0WCE",
-      }}
-      style={styles.youtubeVideo}
-      javaScriptEnabled
-      domStorageEnabled
-    />
-  </View>
-</View>
 
           <View style={[styles.fakeCard, { marginTop: 20 }]}>
             <Text style={styles.fakeCardTitle}>
@@ -320,6 +296,39 @@ export default function App() {
             </Text>
           </View>
         </View>
+
+        {/* VIDEO YOUTUBE */}
+
+<View style={styles.youtubeSection}>
+  
+  <Text style={styles.sectionDescription}>
+    Assista às entrevistas completas.
+  </Text>
+
+  <View style={styles.youtubeContainer}>
+    {Platform.OS === "web" ? (
+      <iframe
+        width="100%"
+        height="100%"
+        src="https://www.youtube.com/embed/nHUxM6p0WCE"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        style={{
+          border: "none",
+        }}
+      />
+    ) : (
+      <WebView
+        source={{
+          uri: "https://www.youtube.com/embed/nHUxM6p0WCE",
+        }}
+        style={{ flex: 1 }}
+      />
+    )}
+  </View>
+</View>
 
         {/* TRANSCRIÇÕES */}
 
@@ -940,10 +949,6 @@ youtubeContainer: {
   borderRadius: 20,
   overflow: "hidden",
   marginTop: 20,
-},
-
-youtubeVideo: {
-  flex: 1,
 },
 
 });
