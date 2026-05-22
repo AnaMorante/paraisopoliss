@@ -387,6 +387,23 @@ const scrollToSection = (position) => {
           </View>
         </View>
 
+        {/* BOTÃO TRANSCRIÇÕES */}
+
+<View style={styles.transcriptionButtonSection}>
+  <TouchableOpacity
+    style={styles.downloadButton}
+    onPress={() =>
+      Linking.openURL(
+        "https://drive.google.com/file/d/1MaXQ8Gr0-Y4nGHt_c8HLT51EJWMF8v7M/view?usp=sharing"
+      )
+    }
+  >
+    <Text style={styles.downloadButtonText}>
+      acessar entrevistas completas
+    </Text>
+  </TouchableOpacity>
+</View>
+
         {/* CARD */}
 
         <View style={styles.cardSection}>
@@ -600,17 +617,26 @@ const styles = StyleSheet.create({
   },
 
   fixedMenuButton: {
-    position: "absolute",
-    top: height * 0.06,
-    right: width * 0.05,
-    zIndex: 999,
-    backgroundColor: "#fff",
-    width: width * 0.14,
-    height: width * 0.14,
-    borderRadius: 999,
-    justifyContent: "center",
-    alignItems: "center",
+  position: "absolute",
+  top: height * 0.06,
+  right: width * 0.05,
+  zIndex: 999,
+  backgroundColor: "#ff6b00",
+  width: width * 0.14,
+  height: width * 0.14,
+  borderRadius: 999,
+  justifyContent: "center",
+  alignItems: "center",
+
+  shadowColor: "#ff6b00",
+  shadowOffset: {
+    width: 0,
+    height: 0,
   },
+  shadowOpacity: 0.6,
+  shadowRadius: 12,
+  elevation: 10,
+},
 
   menuOverlay: {
     flex: 1,
@@ -974,6 +1000,12 @@ youtubeContainer: {
   borderRadius: 20,
   overflow: "hidden",
   marginTop: 20,
+},
+
+transcriptionButtonSection: {
+  backgroundColor: "#000",
+  paddingHorizontal: 24,
+  paddingBottom: 80,
 },
 
 });
