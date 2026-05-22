@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Modal,
+  Linking,
 } from "react-native";
 
 import { Video } from "expo-av";
@@ -35,10 +36,19 @@ export default function App() {
 
   const [playing, setPlaying] = useState(true);
   const [menuVisible, setMenuVisible] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const [fontsLoaded] = useFonts({
     KonkhmerSleokchher_400Regular,
   });
+
+  const galleryImages = [
+    require("./assets/foto5.jpg"),
+    // require("./assets/foto11.jpg"),
+    require("./assets/foto7.jpg"),
+    require("./assets/foto8.jpg"),
+    require("./assets/foto9.jpg"),
+  ];
 
   if (!fontsLoaded) {
     return null;
@@ -104,8 +114,6 @@ export default function App() {
             />
           </TouchableOpacity>
 
-          {/* DOCUMENTÁRIO */}
-
           <TouchableOpacity
             style={styles.menuItem}
             onPress={() => {
@@ -120,8 +128,6 @@ export default function App() {
               documentário
             </Text>
           </TouchableOpacity>
-
-          {/* ENTREVISTAS */}
 
           <TouchableOpacity
             style={styles.menuItem}
@@ -138,8 +144,6 @@ export default function App() {
             </Text>
           </TouchableOpacity>
 
-          {/* TRANSCRIÇÕES */}
-
           <TouchableOpacity
             style={styles.menuItem}
             onPress={() => {
@@ -155,8 +159,6 @@ export default function App() {
             </Text>
           </TouchableOpacity>
 
-          {/* FOTOGRAFIAS */}
-
           <TouchableOpacity
             style={styles.menuItem}
             onPress={() => {
@@ -171,8 +173,6 @@ export default function App() {
               fotografias
             </Text>
           </TouchableOpacity>
-
-          {/* TRABALHO */}
 
           <TouchableOpacity
             style={styles.menuItem}
@@ -190,6 +190,31 @@ export default function App() {
           </TouchableOpacity>
         </View>
       </Modal>
+
+      <Modal
+  visible={selectedImage !== null}
+  transparent={true}
+  animationType="fade"
+>
+  <View style={styles.imageModal}>
+    <TouchableOpacity
+      style={styles.closeImageButton}
+      onPress={() => setSelectedImage(null)}
+    >
+      <Ionicons
+        name="close"
+        size={40}
+        color="#fff"
+      />
+    </TouchableOpacity>
+
+    <Image
+      source={selectedImage}
+      style={styles.fullscreenImage}
+      resizeMode="contain"
+    />
+  </View>
+</Modal>
 
       <ScrollView
         ref={scrollRef}
@@ -227,8 +252,6 @@ export default function App() {
           style={styles.sectionConcrete}
           imageStyle={styles.sectionConcreteImage}
         >
-          <View style={styles.sectionOverlay} />
-
           <Text style={styles.title}>
             Paraisópolis
           </Text>
@@ -256,7 +279,7 @@ export default function App() {
             ref={video}
             style={styles.video}
             source={{
-              uri: "https://cdn.coverr.co/videos/coverr-aerial-view-of-city-1560084122262?download=1080p",
+              // uri: "https://cdn.coverr.co/videos/coverr-aerial-view-of-city-1560084122262?download=1080p",
             }}
             useNativeControls={false}
             resizeMode="cover"
@@ -301,22 +324,21 @@ export default function App() {
 
           <View style={styles.fakeCard}>
             <Text style={styles.fakeCardTitle}>
-              “Eu acho o Paraisópolis o máximo, o melhor lugar de morar que eu já conheci.”
+              “As pessoas te rejeitam porque não conhecem realmente a cultura que acontece aqui.”
             </Text>
 
             <Text style={styles.fakeCardSubtitle}>
-              entrevista • morador local
+              entrevistada • Ângela
             </Text>
           </View>
 
           <View style={[styles.fakeCard, { marginTop: 20 }]}>
             <Text style={styles.fakeCardTitle}>
-              “o problema não é só a estética,
-              é quem lucra com ela.”
+              “Paraisópolis é uma favela que pulsa arte, cultura e representatividade.”
             </Text>
 
             <Text style={styles.fakeCardSubtitle}>
-              entrevista • pesquisador
+              entrevistada • Crioleza
             </Text>
           </View>
         </View>
@@ -336,8 +358,6 @@ export default function App() {
             ao longo da pesquisa.
           </Text>
 
-          {/* BLOCO 1 */}
-
           <View style={styles.quoteBlock}>
             <Text style={styles.quoteSpeaker}>
               entrevistador
@@ -348,8 +368,6 @@ export default function App() {
               nos condomínios ao redor?”
             </Text>
           </View>
-
-          {/* BLOCO 2 */}
 
           <View
             style={[
@@ -374,7 +392,7 @@ export default function App() {
           <View style={styles.card}>
             <Image
               source={{
-                uri: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200",
+                uri: "https://www.dicasdeviagem.com/wp-content/uploads/2025/07/tour-favela-paraisopolis-scaled.jpg",
               }}
               style={styles.cardImage}
             />
@@ -396,21 +414,124 @@ export default function App() {
             fotografias
           </Text>
 
-          <View style={styles.grid}>
-            <Image
-              source={{
-                uri: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1200",
-              }}
-              style={styles.gridImage}
-            />
+          <TouchableOpacity
+  onPress={() =>
+    setSelectedImage(require("./assets/foto1.jpeg"))
+  }
+>
+  <Image
+    source={require("./assets/foto1.jpeg")}
+    style={styles.heroGalleryImage}
+  />
+</TouchableOpacity>
 
-            <Image
-              source={{
-                uri: "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200",
-              }}
-              style={styles.gridImage}
-            />
+          <Text style={styles.galleryText}>
+            Entre vielas, concreto, arte e resistência,
+            Paraisópolis constrói diariamente sua própria identidade visual.
+          </Text>
+
+          <View style={styles.masonryRow}>
+  <TouchableOpacity
+    style={styles.tallImage}
+    onPress={() =>
+      setSelectedImage(require("./assets/foto2.jpeg"))
+    }
+  >
+    <Image
+      source={require("./assets/foto2.jpeg")}
+      style={styles.fullSize}
+    />
+  </TouchableOpacity>
+
+  <View style={styles.smallColumn}>
+    <TouchableOpacity
+      style={styles.smallImage}
+      onPress={() =>
+        setSelectedImage(require("./assets/foto3.jpeg"))
+      }
+    >
+      <Image
+        source={require("./assets/foto3.jpeg")}
+        style={styles.fullSize}
+      />
+    </TouchableOpacity>
+
+    <TouchableOpacity
+      style={styles.smallImage}
+      onPress={() =>
+        setSelectedImage(require("./assets/foto4.jpeg"))
+      }
+    >
+      <Image
+        source={require("./assets/foto4.jpeg")}
+        style={styles.fullSize}
+      />
+    </TouchableOpacity>
+  </View>
+</View>
+
+          <ScrollView
+  horizontal={true}
+  pagingEnabled
+  decelerationRate="fast"
+  snapToAlignment="center"
+  snapToInterval={width * 0.72 + 16}
+  disableIntervalMomentum={true}
+  showsHorizontalScrollIndicator={false}
+  contentContainerStyle={styles.carousel}
+>
+  {galleryImages.map((img, index) => (
+    <View
+      key={index}
+      style={styles.carouselCard}
+    >
+      <TouchableOpacity
+  onPress={() => setSelectedImage(img)}
+>
+  <Image
+    source={img}
+    style={styles.carouselImage}
+  />
+</TouchableOpacity>
+    </View>
+  ))}
+</ScrollView>
+
+
+          <View style={styles.bottomGrid}>
+            <TouchableOpacity
+  onPress={() =>
+    setSelectedImage(require("./assets/foto6.jpg"))
+  }
+>
+  <Image
+    source={require("./assets/foto6.jpg")}
+    style={styles.bottomImage}
+  />
+</TouchableOpacity>
+
+            <TouchableOpacity
+  onPress={() =>
+    setSelectedImage(require("./assets/foto13.jpeg"))
+  }
+>
+  <Image
+    source={require("./assets/foto13.jpeg")}
+    style={styles.bottomImage}
+  />
+</TouchableOpacity>
           </View>
+
+          <TouchableOpacity
+  onPress={() =>
+    setSelectedImage(require("./assets/foto10.jpg"))
+  }
+>
+  <Image
+    source={require("./assets/foto10.jpg")}
+    style={styles.finalImage}
+  />
+</TouchableOpacity>
         </View>
 
         {/* TRABALHO */}
@@ -428,9 +549,16 @@ export default function App() {
             pós-modernidade e estetização da carência.
           </Text>
 
-          <TouchableOpacity style={styles.downloadButton}>
+          <TouchableOpacity
+            style={styles.downloadButton}
+              onPress={() =>
+              Linking.openURL(
+              "https://drive.google.com/file/d/1jr4OaTJmuMbuLqD8Tsy8vN3EBM8Ei-Lj/view?usp=sharing"
+    )
+  }
+>
             <Text style={styles.downloadButtonText}>
-              acessar pesquisa
+               acessar pesquisa
             </Text>
           </TouchableOpacity>
         </View>
@@ -455,8 +583,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
   },
 
-  /* MENU FIXO */
-
   fixedMenuButton: {
     position: "absolute",
     top: 60,
@@ -469,8 +595,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
-  /* MENU */
 
   menuOverlay: {
     flex: 1,
@@ -494,8 +618,6 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontFamily: "KonkhmerSleokchher_400Regular",
   },
-
-  /* HERO */
 
   hero: {
     width: "100%",
@@ -526,8 +648,6 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
 
-  /* INTRO */
-
   sectionConcrete: {
     padding: 24,
     paddingTop: 60,
@@ -541,11 +661,6 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
 
-  sectionOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.45)",
-  },
-
   title: {
     color: "#fff",
     fontSize: 44,
@@ -553,6 +668,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     zIndex: 2,
   },
+
+  fullSize: {
+  width: "100%",
+  height: "100%",
+  borderRadius: 12,
+},
 
   paragraph: {
     color: "#fff",
@@ -571,8 +692,6 @@ const styles = StyleSheet.create({
     lineHeight: 38,
     zIndex: 2,
   },
-
-  /* VIDEO */
 
   videoContainer: {
     width: "100%",
@@ -610,8 +729,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
-  /* CONTENT */
 
   contentSection: {
     backgroundColor: "#111",
@@ -660,8 +777,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 
-  /* QUOTES */
-
   quoteBlock: {
     marginTop: 20,
   },
@@ -680,8 +795,6 @@ const styles = StyleSheet.create({
     lineHeight: 42,
     fontFamily: "KonkhmerSleokchher_400Regular",
   },
-
-  /* CARD */
 
   cardSection: {
     backgroundColor: "#000",
@@ -707,7 +820,24 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
 
-  /* GALERIA */
+  imageModal: {
+  flex: 1,
+  backgroundColor: "rgba(0,0,0,0.95)",
+  justifyContent: "center",
+  alignItems: "center",
+},
+
+fullscreenImage: {
+  width: "100%",
+  height: "80%",
+},
+
+closeImageButton: {
+  position: "absolute",
+  top: 60,
+  right: 24,
+  zIndex: 999,
+},
 
   gallerySection: {
     backgroundColor: "#000",
@@ -716,18 +846,86 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
 
-  grid: {
-    flexDirection: "row",
-    gap: 10,
+  heroGalleryImage: {
+    width: "100%",
+    height: 500,
+    borderRadius: 12,
     marginTop: 20,
   },
 
-  gridImage: {
-    width: width / 2 - 29,
-    height: 260,
+  galleryText: {
+    color: "#fff",
+    fontSize: 22,
+    lineHeight: 34,
+    marginTop: 30,
+    marginBottom: 40,
+    width: "92%",
   },
 
-  /* TRABALHO */
+  masonryRow: {
+    flexDirection: "row",
+    gap: 10,
+    marginBottom: 50,
+  },
+
+  tallImage: {
+    width: "58%",
+    height: 420,
+    borderRadius: 12,
+  },
+
+  smallColumn: {
+    width: "39%",
+    justifyContent: "space-between",
+  },
+
+  smallImage: {
+    width: "100%",
+    height: 205,
+    borderRadius: 12,
+  },
+
+  carousel: {
+    gap: 14,
+    paddingRight: 24,
+    marginBottom: 50,
+  },
+
+  carouselImage: {
+  width: width * 0.72,
+  height: 420,
+  borderRadius: 18,
+},
+
+carouselCard: {
+  marginRight: 16,
+},
+
+  fullImage: {
+    width: "100%",
+    height: 600,
+    borderRadius: 12,
+    marginBottom: 50,
+  },
+
+  bottomGrid: {
+    flexDirection: "row",
+    gap: 10,
+    marginBottom: 10,
+  },
+
+  bottomImage: {
+    width: width / 2 - 29,
+    height: 240,
+    borderRadius: 12,
+  },
+
+  finalImage: {
+    width: "100%",
+    height: 320,
+    borderRadius: 12,
+    marginTop: 10,
+  },
 
   workSection: {
     backgroundColor: "#111",
@@ -749,8 +947,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "KonkhmerSleokchher_400Regular",
   },
-
-  /* FOOTER */
 
   footer: {
     padding: 40,
