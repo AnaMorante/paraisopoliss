@@ -719,6 +719,7 @@ const styles = StyleSheet.create({
     fontSize: width * 0.08,
     lineHeight: width * 0.1,
     fontFamily: "KonkhmerSleokchher_400Regular",
+    marginTop: 30,
   },
 
   playButton: {
