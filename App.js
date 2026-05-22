@@ -210,10 +210,8 @@ export default function App() {
           </Text>
 
           <Text style={styles.paragraph}>
-            Muito além da estética vendável,
-            Paraisópolis é um território construído
-            por resistência, criatividade e
-            sobrevivência coletiva.
+            O que você conhece sobre Paraisópolis
+    provavelmente foi contado por quem nunca viveu aqui.
           </Text>
 
           <Text style={styles.sideText}>
@@ -224,41 +222,39 @@ export default function App() {
 
         {/* VIDEO */}
 
-        <View
-          ref={documentaryRef}
-          style={styles.videoContainer}
-        >
-          <Video
-            ref={video}
-            style={styles.video}
-            source={{
-              uri: "https://cdn.coverr.co/videos/coverr-aerial-view-of-city-1560084122262?download=1080p",
-            }}
-            useNativeControls={false}
-            resizeMode="cover"
-            shouldPlay
-            isLooping
-            isMuted
-          />
+<View
+  ref={documentaryRef}
+  style={styles.videoContainer}
+>
+  {Platform.OS === "web" ? (
+    <iframe
+      width="100%"
+      height="100%"
+      src="https://www.youtube.com/embed/mWfEEhOlFkM"
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      style={{
+        border: "none",
+      }}
+    />
+  ) : (
+    <WebView
+      source={{
+        uri: "https://www.youtube.com/embed/mWfEEhOlFkM",
+      }}
+      style={{ flex: 1 }}
+    />
+  )}
 
-          <View style={styles.videoOverlay}>
-            <Text style={styles.videoText}>
-              enquanto a mídia estetiza,
-              a comunidade resiste.
-            </Text>
-          </View>
-
-          <TouchableOpacity
-            style={styles.playButton}
-            onPress={toggleVideo}
-          >
-            <Ionicons
-              name={playing ? "pause" : "play"}
-              size={24}
-              color="#fff"
-            />
-          </TouchableOpacity>
-        </View>
+  <View style={styles.videoOverlay}>
+    <Text style={styles.videoText}>
+      enquanto a mídia estetiza,
+      a comunidade resiste.
+    </Text>
+  </View>
+</View>
 
         {/* ENTREVISTAS */}
 
