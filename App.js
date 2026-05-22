@@ -285,6 +285,33 @@ export default function App() {
             </Text>
           </View>
 
+          {/* VIDEO YOUTUBE */}
+
+<View style={styles.youtubeSection}>
+  <Text style={styles.sectionTitle}>
+    documentário completo
+  </Text>
+
+  <Text style={styles.sectionDescription}>
+    Assista às entrevistas completas.
+  </Text>
+
+  <View style={styles.youtubeWrapper}>
+    <iframe
+      width="100%"
+      height="220"
+      src="https://youtu.be/nHUxM6p0WCE?si=PkwPDrO2LqS9Wmz5"
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      style={{
+        borderRadius: 20,
+      }}
+    />
+  </View>
+</View>
+
           <View style={[styles.fakeCard, { marginTop: 20 }]}>
             <Text style={styles.fakeCardTitle}>
               “Paraisópolis é uma favela que pulsa arte, cultura e representatividade.”
@@ -899,4 +926,20 @@ const styles = StyleSheet.create({
     lineHeight: width * 0.09,
     fontFamily: "KonkhmerSleokchher_400Regular",
   },
+
+  /* YOUTUBE */
+
+youtubeSection: {
+  backgroundColor: "#111",
+  padding: 24,
+  paddingTop: 70,
+  paddingBottom: 90,
+},
+
+youtubeWrapper: {
+  marginTop: 25,
+  overflow: "hidden",
+  borderRadius: 20,
+},
+
 });
