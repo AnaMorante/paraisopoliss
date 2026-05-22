@@ -238,7 +238,7 @@ const scrollToSection = (position) => {
     <iframe
       width="100%"
       height="100%"
-      src="https://www.youtube.com/embed/mWfEEhOlFkM"
+      src="https://www.youtube.com/embed/DfTnF4xqY88"
       title="YouTube video player"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -565,7 +565,7 @@ const scrollToSection = (position) => {
             style={styles.downloadButton}
             onPress={() =>
               Linking.openURL(
-                "https://drive.google.com/file/d/1jr4OaTJmuMbuLqD8Tsy8vN3EBM8Ei-Lj/view?usp=sharing"
+                "https://drive.google.com/file/d/1TBuMRUIT79ciDxW_VVBFKJrk7I_Ok7Ct/view?usp=sharing"
               )
             }
           >
