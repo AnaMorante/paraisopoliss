@@ -10,6 +10,7 @@ import {
   Dimensions,
   Modal,
   Platform,
+  Linking,
 } from "react-native";
 
 import { Video } from "expo-av";
@@ -35,9 +36,16 @@ export default function App() {
   const galleryRef = useRef(null);
   const workRef = useRef(null);
 
-  const [playing, setPlaying] = useState(true);
-  const [menuVisible, setMenuVisible] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+ const [menuVisible, setMenuVisible] = useState(false);
+ const [selectedImage, setSelectedImage] = useState(null);
+
+ const [sections, setSections] = useState({
+  documentary: 0,
+  interviews: 0,
+  transcription: 0,
+  gallery: 0,
+  work: 0,
+});
 
   const [fontsLoaded] = useFonts({
     KonkhmerSleokchher_400Regular,
@@ -52,15 +60,13 @@ export default function App() {
   ];
 
   if (!fontsLoaded) {
-    return null;
-  }
+  return null;
+}
 
-  const scrollToSection = (ref) => {
-  ref.current?.measure((fx, fy, width, height, px, py) => {
-    scrollRef.current?.scrollTo({
-      y: py - 40,
-      animated: true,
-    });
+const scrollToSection = (position) => {
+  scrollRef.current?.scrollTo({
+    y: position,
+    animated: true,
   });
 };
 
@@ -113,11 +119,11 @@ export default function App() {
           </TouchableOpacity>
 
           {[
-            ["documentário", documentaryRef],
-            ["entrevistas", interviewsRef],
-            ["transcrições", transcriptionRef],
-            ["fotografias", galleryRef],
-            ["trabalho escrito", workRef],
+            ["documentário", sections.documentary],
+            ["entrevistas", sections.interviews],
+            ["transcrições", sections.transcription],
+            ["fotografias", sections.gallery],
+            ["trabalho escrito", sections.work],
           ].map(([title, ref], index) => (
             <TouchableOpacity
               key={index}
@@ -220,8 +226,13 @@ export default function App() {
         {/* VIDEO */}
 
 <View
-  ref={documentaryRef}
   style={styles.videoContainer}
+  onLayout={(event) =>
+    setSections((prev) => ({
+      ...prev,
+      documentary: event.nativeEvent.layout.y,
+    }))
+  }
 >
   {Platform.OS === "web" ? (
     <iframe
@@ -256,9 +267,14 @@ export default function App() {
         {/* ENTREVISTAS */}
 
         <View
-          ref={interviewsRef}
-          style={styles.contentSection}
-        >
+  style={styles.contentSection}
+  onLayout={(event) =>
+    setSections((prev) => ({
+      ...prev,
+      interviews: event.nativeEvent.layout.y,
+    }))
+  }
+>
           <Text style={styles.sectionTitle}>
             entrevistas
           </Text>
@@ -326,9 +342,14 @@ export default function App() {
         {/* TRANSCRIÇÕES */}
 
         <View
-          ref={transcriptionRef}
-          style={styles.contentSectionDark}
-        >
+  style={styles.contentSectionDark}
+  onLayout={(event) =>
+    setSections((prev) => ({
+      ...prev,
+      transcription: event.nativeEvent.layout.y,
+    }))
+  }
+>
           <Text style={styles.sectionTitle}>
             transcrições
           </Text>
@@ -387,9 +408,14 @@ export default function App() {
         {/* GALERIA */}
 
         <View
-          ref={galleryRef}
-          style={styles.gallerySection}
-        >
+  style={styles.gallerySection}
+  onLayout={(event) =>
+    setSections((prev) => ({
+      ...prev,
+      gallery: event.nativeEvent.layout.y,
+    }))
+  }
+>
           <Text style={styles.sectionTitle}>
             fotografias
           </Text>
@@ -518,9 +544,14 @@ export default function App() {
         {/* TRABALHO */}
 
         <View
-          ref={workRef}
-          style={styles.workSection}
-        >
+  style={styles.workSection}
+  onLayout={(event) =>
+    setSections((prev) => ({
+      ...prev,
+      work: event.nativeEvent.layout.y,
+    }))
+  }
+>
           <Text style={styles.sectionTitle}>
             trabalho escrito
           </Text>
