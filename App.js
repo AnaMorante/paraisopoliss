@@ -16,6 +16,7 @@ import {
 import { Video } from "expo-av";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
+import { WebView } from "react-native-webview";
 
 import {
   useFonts,
@@ -293,21 +294,18 @@ export default function App() {
   </Text>
 
   <Text style={styles.sectionDescription}>
-    Assista às entrevistas completas.
+    Assista ao registro audiovisual realizado
+    durante a pesquisa em Paraisópolis.
   </Text>
 
-  <View style={styles.youtubeWrapper}>
-    <iframe
-      width="100%"
-      height="220"
-      src="https://youtu.be/nHUxM6p0WCE?si=PkwPDrO2LqS9Wmz5"
-      title="YouTube video player"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-      style={{
-        borderRadius: 20,
+  <View style={styles.youtubeContainer}>
+    <WebView
+      source={{
+        uri: "https://www.youtube.com/embed/=nHUxM6p0WCE",
       }}
+      style={styles.youtubeVideo}
+      javaScriptEnabled
+      domStorageEnabled
     />
   </View>
 </View>
@@ -936,10 +934,16 @@ youtubeSection: {
   paddingBottom: 90,
 },
 
-youtubeWrapper: {
-  marginTop: 25,
-  overflow: "hidden",
+youtubeContainer: {
+  width: "100%",
+  height: 220,
   borderRadius: 20,
+  overflow: "hidden",
+  marginTop: 20,
+},
+
+youtubeVideo: {
+  flex: 1,
 },
 
 });
