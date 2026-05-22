@@ -258,7 +258,7 @@ const scrollToSection = (position) => {
 
   <View style={styles.videoOverlay}>
     <Text style={styles.videoText}>
-      enquanto a mídia estetiza,
+       a mídia estetiza,
       a comunidade resiste.
     </Text>
   </View>
@@ -709,7 +709,7 @@ const styles = StyleSheet.create({
 
   videoOverlay: {
     position: "absolute",
-    bottom: 120,
+    bottom: 60,
     left: 24,
     width: "80%",
   },
@@ -719,7 +719,7 @@ const styles = StyleSheet.create({
     fontSize: width * 0.08,
     lineHeight: width * 0.1,
     fontFamily: "KonkhmerSleokchher_400Regular",
-    marginTop: 30,
+    // marginTop: 30,
   },
 
   playButton: {
