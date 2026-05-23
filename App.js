@@ -213,7 +213,7 @@ const scrollToSection = (position) => {
           </Text>
 
           <Text style={styles.paragraph}>
-            Mas sua história é quase sempre contada
+            Sua história é quase sempre contada
             por quem observa de fora.
           </Text>
 
