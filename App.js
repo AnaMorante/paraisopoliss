@@ -209,17 +209,19 @@ const scrollToSection = (position) => {
           imageStyle={styles.sectionConcreteImage}
         >
           <Text style={styles.title}>
-            Paraisópolis
+            Paraisópolis aparece nas redes,
+            nos videoclipes, no turismo e
+            nos discursos sobre superação
           </Text>
 
           <Text style={styles.paragraph}>
-            O que você conhece sobre Paraisópolis
-    provavelmente foi contado por quem nunca viveu aqui.
+            Mas sua história é quase sempre contada
+            por quem observa de fora.
           </Text>
 
           <Text style={styles.sideText}>
-            Entre o apagamento e a apropriação cultural,
-            existe uma favela que continua pulsando vida.
+            Enquanto alguns transformam a favela em imagem,
+            outros continuam transformando ela em vida.
           </Text>
         </ImageBackground>
 
@@ -258,8 +260,8 @@ const scrollToSection = (position) => {
 
   <View style={styles.videoOverlay}>
     <Text style={styles.videoText}>
-       a mídia estetiza,
-      a comunidade resiste.
+       a favela não é cenário.
+        é vivência.
     </Text>
   </View>
 </View>
@@ -399,7 +401,7 @@ const scrollToSection = (position) => {
     }
   >
     <Text style={styles.downloadButtonText}>
-      acessar entrevistas completas
+      acessar transcrição completa
     </Text>
   </TouchableOpacity>
 </View>
@@ -449,8 +451,9 @@ const scrollToSection = (position) => {
           </TouchableOpacity>
 
           <Text style={styles.galleryText}>
-            Entre vielas, concreto, arte e resistência,
-            Paraisópolis constrói diariamente sua própria identidade visual.
+            Cada parede, rua e detalhe
+            carrega marcas de identidade,
+            memória e sobrevivência.
           </Text>
 
           <View style={styles.masonryRow}>
@@ -574,8 +577,8 @@ const scrollToSection = (position) => {
           </Text>
 
           <Text style={styles.sectionDescription}>
-            Pesquisa sobre gentrificação cultural,
-            pós-modernidade e estetização da carência.
+            Uma pesquisa sobre estética, desigualdade
+            e a forma como a cidade enxerga a favela.
           </Text>
 
           <TouchableOpacity
@@ -597,6 +600,7 @@ const scrollToSection = (position) => {
         <View style={styles.footer}>
           <Text style={styles.footerText}>
             quando a favela vira estética,
+            
             o que acontece com as pessoas
             que vivem nela?
           </Text>
