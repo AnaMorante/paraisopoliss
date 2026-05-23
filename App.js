@@ -23,15 +23,6 @@ import {
   KonkhmerSleokchher_400Regular,
 } from "@expo-google-fonts/konkhmer-sleokchher";
 
-import {
-  BebasNeue_400Regular,
-} from "@expo-google-fonts/bebas-neue";
-
-const [fontsLoaded] = useFonts({
-  KonkhmerSleokchher_400Regular,
-  BebasNeue_400Regular,
-});
-
 const { width, height } = Dimensions.get("window");
 
 export default function App() {
@@ -222,14 +213,13 @@ const scrollToSection = (position) => {
           </Text>
 
           <Text style={styles.paragraph}>
-            Paraisópolis aparece nas redes,
-            nos videoclipes, no turismo e
-            nos discursos sobre superação
+            Mas sua história é quase sempre contada
+            por quem observa de fora.
           </Text>
 
           <Text style={styles.sideText}>
-            Mas sua história é quase sempre contada
-            por quem observa de fora.
+            Enquanto alguns transformam a favela em imagem,
+            outros continuam transformando ela em vida.
           </Text>
         </ImageBackground>
 
@@ -269,7 +259,7 @@ const scrollToSection = (position) => {
   <View style={styles.videoOverlay}>
     <Text style={styles.videoText}>
        a favela não é cenário.
-       é vivência.
+        é vivência.
     </Text>
   </View>
 </View>
@@ -670,7 +660,7 @@ const styles = StyleSheet.create({
   menuText: {
     color: "#fff",
     fontSize: width * 0.08,
-    // fontFamily: "KonkhmerSleokchher_400Regular",
+    fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   hero: {
@@ -717,7 +707,7 @@ const styles = StyleSheet.create({
   title: {
     color: "#fff",
     fontSize: width * 0.11,
-    fontFamily: "BebasNeue_400Regular",
+    fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   paragraph: {
@@ -730,7 +720,7 @@ const styles = StyleSheet.create({
   sideText: {
     color: "#fff",
     fontSize: width * 0.07,
-    fontFamily: "BebasNeue_400Regular",
+    fontFamily: "KonkhmerSleokchher_400Regular",
     lineHeight: width * 0.095,
   },
 
@@ -756,7 +746,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: width * 0.08,
     lineHeight: width * 0.1,
-    fontFamily: "BebasNeue_400Regular",
+    fontFamily: "KonkhmerSleokchher_400Regular",
     // marginTop: 30,
   },
 
@@ -790,7 +780,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: width * 0.09,
     marginBottom: 20,
-    fontFamily: "BebasNeue_400Regular",
+    fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   sectionDescription: {
@@ -810,7 +800,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: width * 0.065,
     lineHeight: width * 0.09,
-    fontFamily: "BebasNeue_400Regular",
+    fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   fakeCardSubtitle: {
@@ -835,7 +825,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: width * 0.075,
     lineHeight: width * 0.11,
-    fontFamily: "BebasNeue_400Regular",
+    fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   cardSection: {
@@ -852,7 +842,7 @@ const styles = StyleSheet.create({
   cardText: {
     color: "#fff",
     fontSize: width * 0.065,
-    fontFamily: "BebasNeue_400Regular",
+    fontFamily: "KonkhmerSleokchher_400Regular",
     lineHeight: width * 0.09,
     marginTop: 30,
   },
@@ -994,7 +984,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: width * 0.06,
     lineHeight: width * 0.09,
-    fontFamily: "BebasNeue_400Regular",
+    fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   /* YOUTUBE */
