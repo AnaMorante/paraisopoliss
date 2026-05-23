@@ -203,10 +203,6 @@ const scrollToSection = (position) => {
 
         {/* INTRO */}
 
-        <Text style={styles.sideLabel}>
-  zona sul • são paulo • brasil
-</Text>
-
         <ImageBackground
           source={require("./assets/grafite.png")}
           style={styles.sectionConcrete}
@@ -709,24 +705,28 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: "#fff",
-    fontSize: width * 0.11,
-    fontFamily: "KonkhmerSleokchher_400Regular",
-  },
+  color: "#fff",
+  fontSize: width * 0.11,
+  fontFamily: "KonkhmerSleokchher_400Regular",
+  lineHeight: width * 0.10, // diminui o espaço entre as linhas
+  marginBottom: 20, // espaço abaixo do título
+},
 
-  paragraph: {
-    color: "#fff",
-    fontSize: width * 0.05,
-    lineHeight: width * 0.075,
-    width: "92%",
-  },
+paragraph: {
+  color: "#fff",
+  fontSize: width * 0.05,
+  lineHeight: width * 0.082, // leitura mais confortável
+  width: "92%",
+  marginBottom: 24, // espaço entre parágrafos
+},
 
-  sideText: {
-    color: "#fff",
-    fontSize: width * 0.07,
-    fontFamily: "KonkhmerSleokchher_400Regular",
-    lineHeight: width * 0.095,
-  },
+sideText: {
+  color: "#fff",
+  fontSize: width * 0.07,
+  fontFamily: "KonkhmerSleokchher_400Regular",
+  lineHeight: width * 0.075, // linhas mais próximas
+  marginBottom: 20,
+},
 
   videoContainer: {
     width: "100%",
@@ -1012,17 +1012,6 @@ transcriptionButtonSection: {
   backgroundColor: "#000",
   paddingHorizontal: 24,
   paddingBottom: 80,
-},
-
-sideLabel: {
-  position: "absolute",
-  right: -35,
-  top: 180,
-  color: "#666",
-  fontSize: 12,
-  letterSpacing: 4,
-  textTransform: "uppercase",
-  transform: [{ rotate: "90deg" }],
 },
 
 });
