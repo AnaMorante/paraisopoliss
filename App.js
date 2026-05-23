@@ -23,6 +23,15 @@ import {
   KonkhmerSleokchher_400Regular,
 } from "@expo-google-fonts/konkhmer-sleokchher";
 
+import {
+  BebasNeue_400Regular,
+} from "@expo-google-fonts/bebas-neue";
+
+const [fontsLoaded] = useFonts({
+  KonkhmerSleokchher_400Regular,
+  BebasNeue_400Regular,
+});
+
 const { width, height } = Dimensions.get("window");
 
 export default function App() {
@@ -708,7 +717,7 @@ const styles = StyleSheet.create({
   title: {
     color: "#fff",
     fontSize: width * 0.11,
-    fontFamily: "KonkhmerSleokchher_400Regular",
+    fontFamily: "BebasNeue_400Regular",
   },
 
   paragraph: {
@@ -721,7 +730,7 @@ const styles = StyleSheet.create({
   sideText: {
     color: "#fff",
     fontSize: width * 0.07,
-    // fontFamily: "KonkhmerSleokchher_400Regular",
+    fontFamily: "BebasNeue_400Regular",
     lineHeight: width * 0.095,
   },
 
@@ -747,7 +756,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: width * 0.08,
     lineHeight: width * 0.1,
-    // fontFamily: "KonkhmerSleokchher_400Regular",
+    fontFamily: "BebasNeue_400Regular",
     // marginTop: 30,
   },
 
@@ -781,7 +790,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: width * 0.09,
     marginBottom: 20,
-    fontFamily: "KonkhmerSleokchher_400Regular",
+    fontFamily: "BebasNeue_400Regular",
   },
 
   sectionDescription: {
@@ -801,7 +810,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: width * 0.065,
     lineHeight: width * 0.09,
-    // fontFamily: "KonkhmerSleokchher_400Regular",
+    fontFamily: "BebasNeue_400Regular",
   },
 
   fakeCardSubtitle: {
@@ -826,7 +835,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: width * 0.075,
     lineHeight: width * 0.11,
-    // fontFamily: "KonkhmerSleokchher_400Regular",
+    fontFamily: "BebasNeue_400Regular",
   },
 
   cardSection: {
@@ -843,7 +852,7 @@ const styles = StyleSheet.create({
   cardText: {
     color: "#fff",
     fontSize: width * 0.065,
-    fontFamily: "KonkhmerSleokchher_400Regular",
+    fontFamily: "BebasNeue_400Regular",
     lineHeight: width * 0.09,
     marginTop: 30,
   },
@@ -985,7 +994,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: width * 0.06,
     lineHeight: width * 0.09,
-    // fontFamily: "KonkhmerSleokchher_400Regular",
+    fontFamily: "BebasNeue_400Regular",
   },
 
   /* YOUTUBE */
