@@ -203,6 +203,10 @@ const scrollToSection = (position) => {
 
         {/* INTRO */}
 
+        <Text style={styles.sideLabel}>
+  zona sul • são paulo • brasil
+</Text>
+
         <ImageBackground
           source={require("./assets/grafite.png")}
           style={styles.sectionConcrete}
@@ -1008,6 +1012,17 @@ transcriptionButtonSection: {
   backgroundColor: "#000",
   paddingHorizontal: 24,
   paddingBottom: 80,
+},
+
+sideLabel: {
+  position: "absolute",
+  right: -35,
+  top: 180,
+  color: "#666",
+  fontSize: 12,
+  letterSpacing: 4,
+  textTransform: "uppercase",
+  transform: [{ rotate: "90deg" }],
 },
 
 });
