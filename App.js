@@ -209,19 +209,18 @@ const scrollToSection = (position) => {
           imageStyle={styles.sectionConcreteImage}
         >
           <Text style={styles.title}>
+            Quem é Paraisópolis?
+          </Text>
+
+          <Text style={styles.paragraph}>
             Paraisópolis aparece nas redes,
             nos videoclipes, no turismo e
             nos discursos sobre superação
           </Text>
 
-          <Text style={styles.paragraph}>
+          <Text style={styles.sideText}>
             Mas sua história é quase sempre contada
             por quem observa de fora.
-          </Text>
-
-          <Text style={styles.sideText}>
-            Enquanto alguns transformam a favela em imagem,
-            outros continuam transformando ela em vida.
           </Text>
         </ImageBackground>
 
@@ -261,7 +260,7 @@ const scrollToSection = (position) => {
   <View style={styles.videoOverlay}>
     <Text style={styles.videoText}>
        a favela não é cenário.
-        é vivência.
+       é vivência.
     </Text>
   </View>
 </View>
@@ -662,7 +661,7 @@ const styles = StyleSheet.create({
   menuText: {
     color: "#fff",
     fontSize: width * 0.08,
-    fontFamily: "KonkhmerSleokchher_400Regular",
+    // fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   hero: {
@@ -722,7 +721,7 @@ const styles = StyleSheet.create({
   sideText: {
     color: "#fff",
     fontSize: width * 0.07,
-    fontFamily: "KonkhmerSleokchher_400Regular",
+    // fontFamily: "KonkhmerSleokchher_400Regular",
     lineHeight: width * 0.095,
   },
 
@@ -748,7 +747,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: width * 0.08,
     lineHeight: width * 0.1,
-    fontFamily: "KonkhmerSleokchher_400Regular",
+    // fontFamily: "KonkhmerSleokchher_400Regular",
     // marginTop: 30,
   },
 
@@ -802,7 +801,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: width * 0.065,
     lineHeight: width * 0.09,
-    fontFamily: "KonkhmerSleokchher_400Regular",
+    // fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   fakeCardSubtitle: {
@@ -827,7 +826,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: width * 0.075,
     lineHeight: width * 0.11,
-    fontFamily: "KonkhmerSleokchher_400Regular",
+    // fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   cardSection: {
@@ -986,7 +985,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: width * 0.06,
     lineHeight: width * 0.09,
-    fontFamily: "KonkhmerSleokchher_400Regular",
+    // fontFamily: "KonkhmerSleokchher_400Regular",
   },
 
   /* YOUTUBE */
